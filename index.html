@@ -865,9 +865,10 @@ body{
     }
   });
 
-  // ---- start button: manual "go" override -- also selects Start Time for entry ----
+  // ---- start button: selects Section Start Time for entry. The stopwatch
+  // starts automatically (via checkAutoStart) once the race clock reaches
+  // this entered time -- pressing this button does not start it directly ----
   document.getElementById('btn-start').addEventListener('click', ()=>{
-    triggerGo();
     selectField('start');
   });
 
