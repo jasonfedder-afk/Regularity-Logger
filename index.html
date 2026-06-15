@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" data-led="red" data-clock="24">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Regularity Computer</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Regularity" />
+<link rel="apple-touch-icon" href="data:image/png;base64,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" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ===== LED colour themes ===== */
+:root, [data-led="red"]   { --led-on:#ff3c1a; --led-glow: rgba(255,60,26,.55);  --led-off:#34110a; }
+[data-led="green"]        { --led-on:#36ff6e; --led-glow: rgba(54,255,110,.5); --led-off:#0e3a1c; }
+[data-led="amber"]        { --led-on:#ffb000; --led-glow: rgba(255,176,0,.5); --led-off:#3a2606; }
+
+:root{
+  --dw:18px; --dh:34px; --th:4px;
+  --stage-bg:#0e0f10;
+  --case-1:#55575c; --case-2:#34363b; --case-3:#1a1b1e;
+  --screen-bg:#07080a;
+  --label-color:#9aa0aa;
+  --brand-color:#d8dbe0;
+  --btn-1:#45474c; --btn-2:#292b2f; --btn-text:#eceef0;
+  --accent:#f5a623; --accent-dark:#b97a0f;
+  --row-divider:#1d1f22;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  font-family:'Rajdhani',sans-serif;
+  background: radial-gradient(ellipse at top, #24262a, var(--stage-bg) 70%);
+  color:#e7e8ea;
+  min-height:100vh;
+}
+.stage{ max-width:760px; margin:0 auto; padding:28px 16px 48px; }
+.masthead h1{ font-size:1.3rem; letter-spacing:.12em; margin:0 0 20px; font-weight:700; }
+
+/* ===== device case ===== */
+.unit{
+  position:relative;
+  background: linear-gradient(160deg, var(--case-1) 0%, var(--case-2) 50%, var(--case-3) 100%);
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+  border:1px solid #0a0a0b;
+}
+.screw{ position:absolute; width:10px; height:10px; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #8a8c90, #4a4c50 60%, #2a2c30);
+  box-shadow: inset 0 0 2px rgba(0,0,0,.8), 0 1px 1px rgba(255,255,255,.2); }
+.screw::after{ content:''; position:absolute; top:50%; left:10%; width:80%; height:1px; background:rgba(0,0,0,.6); transform: rotate(35deg); }
+.screw.tl{ top:8px; left:8px; } .screw.tr{ top:8px; right:8px; }
+.screw.bl{ bottom:8px; left:8px; } .screw.br{ bottom:8px; right:8px; }
+
+.unit-header{ display:flex; justify-content:space-between; align-items:center; padding:0 22px 12px; gap:10px; flex-wrap:wrap; }
+.brand{ font-weight:700; letter-spacing:.16em; font-size:.7rem; color:var(--brand-color); }
+.header-right{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.led-switch{ display:flex; gap:6px; }
+.led-dot{ width:13px; height:13px; border-radius:50%; border:2px solid rgba(255,255,255,.15); cursor:pointer; padding:0; flex:none; }
+.led-dot[data-led="red"]   { background:#ff3c1a; }
+.led-dot[data-led="green"] { background:#36ff6e; }
+.led-dot[data-led="amber"] { background:#ffb000; }
+.led-dot.active{ box-shadow:0 0 0 2px #fff, 0 0 8px rgba(255,255,255,.5); border-color:#fff; }
+
+/* ===== screen ===== */
+.screen{ position:relative; background:var(--screen-bg); border-radius:8px; padding:14px 16px; border:1px solid #000;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,.85); display:flex; flex-direction:column; gap:12px; }
+.screen::after{ content:''; position:absolute; inset:0; border-radius:8px; pointer-events:none;
+  background: linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,0) 35%); }
+
+.top-row{ display:flex; justify-content:center; align-items:flex-end; gap:28px; flex-wrap:wrap; padding:4px 0 18px; border-bottom:1px solid var(--row-divider); }
+.top-row .block{ align-items:center; }
+.top-row .field-label{ font-size:.85rem; }
+.interval-display{
+  --dw: 36px; --dh: 68px; --th: 8px;
+  gap: 6px; margin-top: 2px;
+}
+.start-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-bottom:12px; border-bottom:1px solid var(--row-divider); }
+
+.block{ display:flex; flex-direction:column; gap:6px; }
+.field-label{ font-size:.68rem; letter-spacing:.16em; color:var(--label-color); font-weight:600; text-transform:uppercase; }
+.readout-block .field-label{ color:#6e737b; }
+.display-row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.display{ display:flex; align-items:center; }
+.ampm{ display:none; font-size:.6rem; letter-spacing:.08em; font-weight:600; color:var(--label-color); margin-left:4px; }
+[data-clock="12"] .ampm{ display:inline-block; }
+
+.field-block{ display:flex; flex-direction:column; gap:6px; padding:4px 8px; margin:-4px -8px; border-radius:5px; border:1px solid transparent; cursor:pointer; }
+.field-block:hover{ border-color: rgba(255,255,255,.08); }
+.field-block.selected{ border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 10px rgba(245,166,35,.35); }
+
+/* ===== 7-segment digit ===== */
+.digit{ position:relative; width:var(--dw); height:var(--dh); margin:0 1px; flex:none; }
+.seg{ position:absolute; background:var(--led-off); transition: background-color .03s linear, box-shadow .03s linear; }
+.seg.on{ background:var(--led-on); box-shadow: 0 0 4px var(--led-on), 0 0 9px var(--led-glow), 0 0 16px var(--led-glow); }
+.seg-a,.seg-g,.seg-d{ left:var(--th); width:calc(var(--dw) - 2*var(--th)); height:var(--th);
+  clip-path: polygon(10% 0,90% 0,100% 50%,90% 100%,10% 100%,0 50%); }
+.seg-a{ top:0; }
+.seg-g{ top:calc(var(--dh)/2 - var(--th)/2); }
+.seg-d{ top:calc(var(--dh) - var(--th)); }
+.seg-f,.seg-b,.seg-e,.seg-c{ width:var(--th); height:calc((var(--dh) - 3*var(--th))/2);
+  clip-path: polygon(0 8%,50% 0,100% 8%,100% 92%,50% 100%,0 92%); }
+.seg-f{ top:var(--th); left:0; }
+.seg-b{ top:var(--th); left:calc(var(--dw) - var(--th)); }
+.seg-e{ top:calc(var(--dh) - var(--th) - (var(--dh) - 3*var(--th))/2); left:0; }
+.seg-c{ top:calc(var(--dh) - var(--th) - (var(--dh) - 3*var(--th))/2); left:calc(var(--dw) - var(--th)); }
+
+.colon{ position:relative; width:calc(var(--th) * 2); height:var(--dh); margin:0 2px; flex:none; }
+.colon span{ position:absolute; left:0; width:var(--th); height:var(--th); border-radius:1px; background:var(--led-off); }
+.colon span:nth-child(1){ top:calc(var(--dh) * 0.27 - var(--th)/2); }
+.colon span:nth-child(2){ top:calc(var(--dh) * 0.63 - var(--th)/2); }
+.colon.on span{ background:var(--led-on); box-shadow:0 0 4px var(--led-on), 0 0 9px var(--led-glow); }
+
+.decimal{ position:relative; width:var(--th); height:var(--dh); margin:0 2px; flex:none; }
+.decimal span{ position:absolute; left:0; bottom:0; width:var(--th); height:var(--th); border-radius:1px;
+  background:var(--led-on); box-shadow:0 0 4px var(--led-on), 0 0 9px var(--led-glow); }
+
+.gps-dot{ display:inline-block; width:7px; height:7px; border-radius:50%; background:#4a4d52; margin-left:6px; vertical-align:middle; }
+.gps-dot.active{ background:#36ff6e; box-shadow:0 0 4px #36ff6e, 0 0 8px rgba(54,255,110,.5); }
+.gps-dot.error{ background:#ff3c1a; box-shadow:0 0 4px #ff3c1a, 0 0 8px rgba(255,60,26,.5); }
+
+/* sign cell for interval display */
+.sign-cell{ position:relative; width:var(--dw); height:var(--dh); margin:0 1px; flex:none; }
+.sign-h, .sign-v{ position:absolute; background:var(--led-off); }
+.sign-h{ left:var(--th); top:calc(var(--dh)/2 - var(--th)/2); width:calc(var(--dw) - 2*var(--th)); height:var(--th);
+  clip-path: polygon(10% 0,90% 0,100% 50%,90% 100%,10% 100%,0 50%); }
+.sign-v{ left:calc(var(--dw)/2 - var(--th)/2); top:var(--th); width:var(--th); height:calc(var(--dh) - 2*var(--th));
+  clip-path: polygon(0 8%,50% 0,100% 8%,100% 92%,50% 100%,0 92%); }
+.sign-h.on, .sign-v.on{ background:var(--led-on); box-shadow:0 0 4px var(--led-on), 0 0 9px var(--led-glow); }
+
+@keyframes flash{ 0%,100%{ filter:none; } 50%{ filter: drop-shadow(0 0 6px #ff3030) brightness(1.7); } }
+.flash{ animation: flash .35s ease; }
+
+/* ===== checkpoint rows ===== */
+.checkpoint-row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 0; border-bottom:1px solid var(--row-divider); }
+.checkpoint-row:last-child{ border-bottom:none; }
+.checkpoint-fields{ display:flex; gap:12px; flex-wrap:wrap; flex:1 1 280px; }
+.checkpoint-fields.cp-scale{ --dw:15.3px; --dh:28.9px; --th:3.4px; }
+
+/* ===== buttons ===== */
+.btn{ font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.06em; color:var(--btn-text);
+  background:linear-gradient(180deg, var(--btn-1), var(--btn-2)); border:1px solid #0d0e10; border-radius:6px;
+  box-shadow: 0 2px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06); cursor:pointer; padding:8px 14px; font-size:.85rem; }
+.btn:active{ transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06); }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+.check-btn{ flex:0 0 88px; height:50px; background: linear-gradient(180deg,#ffc24d, var(--accent-dark)); color:#2a1800; font-weight:700; border-color:#7a4d00; font-size:.85rem; }
+#btn-start, #btn-section-distance{ background: linear-gradient(180deg,#6dffa0, #1f8f4a); color:#062b15; border-color:#0d5c2e; }
+.rc-buttons{ display:flex; flex-direction:row; gap:6px; }
+.rc-buttons .btn{ padding:6px 10px; font-size:.78rem; width:54px; text-align:center; }
+
+.new-section-btn{ background:linear-gradient(180deg,#5a5d63,#33353a); font-size:.7rem; letter-spacing:.12em; padding:8px 12px; }
+
+/* ===== keypad ===== */
+.keypad-panel{ margin-top:16px; }
+.selection-indicator{ display:none; }
+.keypad-row{ display:flex; gap:8px; max-width:368px; }
+.keypad{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; flex:1 1 auto; }
+.keypad .btn{ padding:14px 0; font-size:1.1rem; }
+.btn-ent{ flex:0 0 72px; align-self:stretch; background: linear-gradient(180deg,#6dffa0, #1f8f4a); color:#062b15; border-color:#0d5c2e; font-weight:700; letter-spacing:.12em; }
+
+@media (max-width:480px){
+  :root{ --dw:15px; --dh:28px; --th:3.4px; }
+  .unit{ padding:14px; }
+  .unit-header{ padding:0 6px 12px; }
+  .screen{ padding:12px 10px; }
+  .checkpoint-fields{ gap:8px; }
+  .top-row{ gap:20px; }
+  .interval-display{ --dw:30px; --dh:56px; --th:6.8px; }
+  .checkpoint-fields.cp-scale{ --dw:12.75px; --dh:23.8px; --th:2.89px; }
+}
+
+/* ===== landscape: keypad pinned to the right, screen scrolls on the left ===== */
+@media (orientation:landscape){
+  :root{ --dw:12px; --dh:22px; --th:2.6px; }
+  html,body{ height:100%; }
+  body{ min-height:100dvh; }
+
+  .stage{
+    max-width:none;
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+    padding:6px calc(8px + env(safe-area-inset-right)) 6px calc(8px + env(safe-area-inset-left));
+  }
+  .masthead{ flex:none; }
+  .masthead h1{ font-size:.78rem; margin:0 0 4px; letter-spacing:.14em; }
+
+  .unit{
+    flex:1 1 auto;
+    min-height:0;
+    display:grid;
+    grid-template-columns: 1fr clamp(180px, 27vw, 240px);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "header header" "screen keypad";
+    column-gap:8px;
+    align-items:stretch;
+    padding:8px;
+  }
+  .unit-header{ grid-area:header; padding:0 4px 6px; gap:6px; }
+  .brand{ font-size:.62rem; }
+  .rc-buttons .btn, .new-section-btn{ font-size:.62rem; padding:6px 8px; }
+  .led-dot{ width:11px; height:11px; }
+
+  .screen{ grid-area:screen; min-height:0; height:100%; overflow-y:auto; padding:8px 10px; gap:6px; }
+  .keypad-panel{ grid-area:keypad; min-height:0; height:100%; margin-top:0; display:flex; flex-direction:column; justify-content:center; }
+  .keypad-row{ max-width:none; flex-direction:column; gap:6px; }
+  .keypad{ gap:5px; }
+  .keypad .btn{ padding:8px 0; font-size:1rem; min-height:36px; }
+  .btn-ent{ flex:none; width:100%; align-self:auto; padding:9px 0; font-size:.8rem; }
+
+  .top-row{ gap:10px; padding:2px 0 8px; justify-content:flex-start; }
+  .interval-display{ --dw:18px; --dh:36px; --th:4px; }
+  .start-row{ gap:8px; padding:8px 0; }
+  .checkpoint-row{ gap:6px; padding:5px 0; }
+  .checkpoint-fields{ gap:5px; flex:1 1 190px; }
+  .checkpoint-fields.cp-scale{ --dw:9.5px; --dh:18px; --th:2.2px; }
+  .check-btn{ flex:0 0 50px; height:34px; font-size:.65rem; }
+  .field-label{ font-size:.6rem; }
+}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <header class="masthead">
+    <h1>REGULARITY COMPUTER</h1>
+  </header>
+
+  <div class="unit">
+    <div class="screw tl"></div><div class="screw tr"></div><div class="screw bl"></div><div class="screw br"></div>
+
+    <div class="unit-header">
+      <div class="brand">CO-DRIVER &middot; REGULARITY MODE</div>
+      <div class="header-right">
+        <div class="rc-buttons">
+          <button class="btn" id="btn-rc-minus" title="Adjust race clock &minus;1 second">&minus;1s</button>
+          <button class="btn" id="btn-rc-plus" title="Adjust race clock +1 second">+1s</button>
+          <button class="btn" id="btn-rc-set" title="Set race clock time manually">SET</button>
+        </div>
+        <button class="btn new-section-btn" id="btn-clock-format" title="Toggle 12hr / 24hr time display">24HR</button>
+        <div class="led-switch">
+          <button class="led-dot active" data-led="red" aria-label="Red display"></button>
+          <button class="led-dot" data-led="green" aria-label="Green display"></button>
+          <button class="led-dot" data-led="amber" aria-label="Amber display"></button>
+        </div>
+        <button class="btn new-section-btn" id="btn-new-section">NEW SECTION</button>
+      </div>
+    </div>
+
+    <div class="screen">
+
+      <!-- Race Clock + Interval + Stopwatch -->
+      <div class="top-row">
+        <div class="block">
+          <div class="field-label">Race Clock</div>
+          <div class="display-row">
+            <div class="display" id="display-raceclock"></div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="field-label">Current Interval (secs)</div>
+          <div class="display-row">
+            <div class="display interval-display" id="display-interval"></div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="field-label">Stopwatch</div>
+          <div class="display-row">
+            <div class="display" id="display-stopwatch"></div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="field-label">Distance (mi) <span class="gps-dot" id="gps-status" title="GPS status"></span></div>
+          <div class="display-row">
+            <div class="display" id="display-distance"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start Time -->
+      <div class="start-row">
+        <button class="btn check-btn" id="btn-start">Input</button>
+        <div class="checkpoint-fields">
+          <div class="field-block" data-field="start">
+            <div class="field-label">Section Start Time</div>
+            <div class="display-row">
+              <div class="display" id="display-start"></div>
+            </div>
+          </div>
+          <button class="btn check-btn" id="btn-section-distance">Input</button>
+          <div class="field-block" data-field="sectiondistance">
+            <div class="field-label">Section Distance (mi)</div>
+            <div class="display-row">
+              <div class="display" id="display-sectiondistance"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkpoint 1 -->
+      <div class="checkpoint-row">
+        <button class="btn check-btn" data-checkpoint="1">CHECK 1</button>
+        <div class="checkpoint-fields cp-scale">
+          <div class="field-block" data-field="target1">
+            <div class="field-label">Tgt Total Time</div>
+            <div class="display-row"><div class="display" id="display-target1"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Tgt Race Time</div>
+            <div class="display-row"><div class="display" id="display-tgtrace1"></div></div>
+          </div>
+          <div class="field-block" data-field="actual1">
+            <div class="field-label">Recorded</div>
+            <div class="display-row"><div class="display" id="display-actual1"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Interval (secs)</div>
+            <div class="display-row"><div class="display" id="display-cpinterval1"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkpoint 2 -->
+      <div class="checkpoint-row">
+        <button class="btn check-btn" data-checkpoint="2">CHECK 2</button>
+        <div class="checkpoint-fields cp-scale">
+          <div class="field-block" data-field="target2">
+            <div class="field-label">Tgt Total Time</div>
+            <div class="display-row"><div class="display" id="display-target2"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Tgt Race Time</div>
+            <div class="display-row"><div class="display" id="display-tgtrace2"></div></div>
+          </div>
+          <div class="field-block" data-field="actual2">
+            <div class="field-label">Recorded</div>
+            <div class="display-row"><div class="display" id="display-actual2"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Interval (secs)</div>
+            <div class="display-row"><div class="display" id="display-cpinterval2"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkpoint 3 -->
+      <div class="checkpoint-row">
+        <button class="btn check-btn" data-checkpoint="3">CHECK 3</button>
+        <div class="checkpoint-fields cp-scale">
+          <div class="field-block" data-field="target3">
+            <div class="field-label">Tgt Total Time</div>
+            <div class="display-row"><div class="display" id="display-target3"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Tgt Race Time</div>
+            <div class="display-row"><div class="display" id="display-tgtrace3"></div></div>
+          </div>
+          <div class="field-block" data-field="actual3">
+            <div class="field-label">Recorded</div>
+            <div class="display-row"><div class="display" id="display-actual3"></div></div>
+          </div>
+          <div class="block readout-block">
+            <div class="field-label">Interval (secs)</div>
+            <div class="display-row"><div class="display" id="display-cpinterval3"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Keypad -->
+    <div class="keypad-panel">
+      <div class="selection-indicator" id="selection-indicator">Tap SECTION START TIME, TGT TOTAL TIME or RECORDED above to select it, then type a time (HHMMSS / MMSS)</div>
+      <div class="keypad-row">
+        <div class="keypad">
+          <button class="btn" data-digit="1">1</button>
+          <button class="btn" data-digit="2">2</button>
+          <button class="btn" data-digit="3">3</button>
+          <button class="btn" data-digit="4">4</button>
+          <button class="btn" data-digit="5">5</button>
+          <button class="btn" data-digit="6">6</button>
+          <button class="btn" data-digit="7">7</button>
+          <button class="btn" data-digit="8">8</button>
+          <button class="btn" data-digit="9">9</button>
+          <button class="btn" id="btn-clr">CLR</button>
+          <button class="btn" data-digit="0">0</button>
+          <button class="btn" id="btn-del">DEL</button>
+        </div>
+        <button class="btn btn-ent" id="btn-ent">ENT</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const SEGMENTS = {
+    '0':[1,1,1,1,1,1,0], '1':[0,1,1,0,0,0,0], '2':[1,1,0,1,1,0,1], '3':[1,1,1,1,0,0,1],
+    '4':[0,1,1,0,0,1,1], '5':[1,0,1,1,0,1,1], '6':[1,0,1,1,1,1,1], '7':[1,1,1,0,0,0,0],
+    '8':[1,1,1,1,1,1,1], '9':[1,1,1,1,0,1,1], ' ':[0,0,0,0,0,0,0]
+  };
+  const SEG_KEYS = ['a','b','c','d','e','f','g'];
+
+  function buildDigit(){
+    const d = document.createElement('div');
+    d.className = 'digit';
+    SEG_KEYS.forEach(k=>{
+      const s = document.createElement('div');
+      s.className = 'seg seg-' + k;
+      d.appendChild(s);
+    });
+    return d;
+  }
+  function buildColon(){
+    const c = document.createElement('div');
+    c.className = 'colon';
+    c.innerHTML = '<span></span><span></span>';
+    return c;
+  }
+  function buildDecimal(){
+    const d = document.createElement('div');
+    d.className = 'decimal';
+    d.innerHTML = '<span></span>';
+    return d;
+  }
+  function buildTimeDisplay(container, layout){
+    const digits = [];
+    layout = layout || [0,1,'c',2,3,'c',4,5];
+    layout.forEach(item=>{
+      if(item === 'c'){ container.appendChild(buildColon()); }
+      else if(item === 'd'){ container.appendChild(buildDecimal()); }
+      else { const d = buildDigit(); container.appendChild(d); digits.push(d); }
+    });
+    return digits;
+  }
+  function setDigits(digits, str){
+    for(let i=0;i<digits.length;i++){
+      const ch = str[i] || ' ';
+      const pat = SEGMENTS[ch] || SEGMENTS[' '];
+      const segs = digits[i].children;
+      for(let j=0;j<7;j++) segs[j].classList.toggle('on', !!pat[j]);
+    }
+  }
+  function setColon(container, on){
+    container.querySelectorAll('.colon').forEach(c=>c.classList.toggle('on', on));
+  }
+  function appendAmPm(container){
+    const span = document.createElement('span');
+    span.className = 'ampm';
+    container.appendChild(span);
+    return span;
+  }
+  function flashEl(el){
+    el.classList.add('flash');
+    setTimeout(()=>el.classList.remove('flash'), 350);
+  }
+  function pad2(n){ return n.toString().padStart(2,'0'); }
+
+  // ---- build all time displays ----
+  const names = ['stopwatch','start','target1','actual1','target2','actual2','target3','actual3'];
+  const MMSS_LAYOUT = [0,1,'c',2,3];
+  const digitsMap = {};
+  const ampmEls = {};
+  names.forEach(n=>{
+    const el = document.getElementById('display-' + n);
+    const isTarget = (n === 'target1' || n === 'target2' || n === 'target3');
+    digitsMap[n] = buildTimeDisplay(el, isTarget ? MMSS_LAYOUT : undefined);
+    setColon(el, true);
+    if(n === 'start' || n === 'actual1' || n === 'actual2' || n === 'actual3'){
+      ampmEls[n] = appendAmPm(el);
+    }
+  });
+
+  // ---- race clock (continuous time-of-day, sync'd to the official race clock) ----
+  const raceClockEl = document.getElementById('display-raceclock');
+  const raceClockDigits = buildTimeDisplay(raceClockEl);
+  setColon(raceClockEl, true);
+  digitsMap.raceclock = raceClockDigits;
+  ampmEls.raceclock = appendAmPm(raceClockEl);
+
+  // ---- target race time (computed: start time + tgt total time) ----
+  const tgtRaceDigits = {};
+  [1,2,3].forEach(i=>{
+    const el = document.getElementById('display-tgtrace' + i);
+    tgtRaceDigits[i] = buildTimeDisplay(el);
+    setColon(el, true);
+    setDigits(tgtRaceDigits[i], '      ');
+    ampmEls['tgtrace'+i] = appendAmPm(el);
+  });
+
+  // ---- distance tripmeter (GPS-based) ----
+  const distanceDigits = buildTimeDisplay(document.getElementById('display-distance'), [0,1,2,3,'d',4,5]);
+  setDigits(distanceDigits, '000000');
+
+  // ---- section distance (manual reference entry, XX.XX mi) ----
+  digitsMap.sectiondistance = buildTimeDisplay(document.getElementById('display-sectiondistance'), [0,1,'d',2,3]);
+
+
+  // ---- 12hr / 24hr display formatting ----
+  // todDigits maps every time-of-day display (as opposed to elapsed-time displays
+  // like the stopwatch or Tgt Total Time) to its digit elements
+  const todDigits = {
+    raceclock: raceClockDigits,
+    start: digitsMap.start, actual1: digitsMap.actual1, actual2: digitsMap.actual2, actual3: digitsMap.actual3,
+    tgtrace1: tgtRaceDigits[1], tgtrace2: tgtRaceDigits[2], tgtrace3: tgtRaceDigits[3]
+  };
+  let clockFormat24 = true;
+  function setAmPm(name, text){
+    if(ampmEls[name]) ampmEls[name].textContent = text;
+  }
+  // render a time-of-day value (seconds since midnight, or null) in the current format
+  function renderTimeDisplay(name, secs){
+    if(secs === null){
+      setDigits(todDigits[name], '      ');
+      setAmPm(name, '');
+      return;
+    }
+    let h = Math.floor(secs/3600) % 24, m = Math.floor((secs%3600)/60), s = secs % 60;
+    let ampm = '';
+    if(!clockFormat24){
+      ampm = (h < 12) ? 'AM' : 'PM';
+      h = h % 12; if(h === 0) h = 12;
+    }
+    setDigits(todDigits[name], pad2(h)+pad2(m)+pad2(s));
+    setAmPm(name, ampm);
+  }
+  // re-render a manually-entered time-of-day field (start / actual1-3) in the
+  // current format, unless it's currently being typed into (raw digits shown then)
+  function refreshTodField(name){
+    if(selected === name) return;
+    renderTimeDisplay(name, timeStrToSeconds(buffers[name]));
+  }
+
+  // ---- interval-style display: sign cell + 2 digits ----
+  function buildIntervalDisplay(container){
+    const signH = document.createElement('div'); signH.className = 'sign-h';
+    const signV = document.createElement('div'); signV.className = 'sign-v';
+    const signCell = document.createElement('div'); signCell.className = 'sign-cell';
+    signCell.appendChild(signH); signCell.appendChild(signV);
+    container.appendChild(signCell);
+    const digits = [buildDigit(), buildDigit()];
+    digits.forEach(d=>container.appendChild(d));
+    return { digits, signH, signV };
+  }
+  function renderIntervalValue(disp, value){
+    if(value === null){
+      setDigits(disp.digits, '  ');
+      disp.signH.classList.remove('on');
+      disp.signV.classList.remove('on');
+      return;
+    }
+    const abs = Math.min(99, Math.abs(value));
+    setDigits(disp.digits, abs.toString().padStart(2,'0'));
+    disp.signH.classList.toggle('on', value !== 0);
+    disp.signV.classList.toggle('on', value > 0);
+  }
+
+  const mainIntervalDisp = buildIntervalDisplay(document.getElementById('display-interval'));
+  function setInterval_(value){ renderIntervalValue(mainIntervalDisp, value); }
+  setInterval_(null);
+
+  // ---- per-checkpoint interval readouts (capture the interval at each check) ----
+  const cpIntervalDisp = {};
+  [1,2,3].forEach(i=>{
+    cpIntervalDisp[i] = buildIntervalDisplay(document.getElementById('display-cpinterval' + i));
+    renderIntervalValue(cpIntervalDisp[i], null);
+  });
+
+  // ---- entry buffers & field selection ----
+  const buffers = { start:'', target1:'', actual1:'', target2:'', actual2:'', target3:'', actual3:'', raceclock:'', sectiondistance:'' };
+  const fieldLabels = { start:'SECTION START TIME', target1:'TGT TOTAL TIME 1', actual1:'RECORDED 1', target2:'TGT TOTAL TIME 2', actual2:'RECORDED 2', target3:'TGT TOTAL TIME 3', actual3:'RECORDED 3', raceclock:'RACE CLOCK', sectiondistance:'SECTION DISTANCE' };
+  let selected = null;
+
+  function renderBuffer(name){
+    setDigits(digitsMap[name], buffers[name].padEnd(digitsMap[name].length,' '));
+  }
+  names.filter(n=>n!=='stopwatch').forEach(renderBuffer);
+  renderBuffer('sectiondistance');
+
+  const selIndicator = document.getElementById('selection-indicator');
+  const TOD_ENTRY_FIELDS = ['start','actual1','actual2','actual3'];
+  function selectField(name){
+    const prev = selected;
+    selected = name;
+    document.querySelectorAll('.field-block').forEach(el=>{
+      el.classList.toggle('selected', el.dataset.field === name);
+    });
+    // leaving a time-of-day field: show it formatted (12/24hr) instead of raw digits
+    if(prev && prev !== name){
+      if(TOD_ENTRY_FIELDS.includes(prev)) refreshTodField(prev);
+      else if(prev === 'raceclock'){ buffers.raceclock = ''; renderRaceClock(); }
+    }
+    // entering a time-of-day entry field: show raw 24hr digits for editing
+    if(name && (TOD_ENTRY_FIELDS.includes(name) || name === 'raceclock')){
+      renderBuffer(name);
+      setAmPm(name, '');
+    }
+    if(name){
+      const len = digitsMap[name].length;
+      let fmt, verb;
+      if(name === 'sectiondistance'){ fmt = 'XX.XX mi'; verb = 'value'; }
+      else { fmt = (len === 4) ? 'MMSS' : 'HHMMSS'; verb = 'time'; }
+      let msg = 'Entering ' + verb + ' into <b>' + fieldLabels[name] + '</b> &mdash; type ' + len + ' digits (' + fmt + ')';
+      if(name === 'target1' || name === 'target2' || name === 'target3') msg += ', then press ENT for RECORDED';
+      else if(name === 'raceclock') msg += ', then press SET or ENT to confirm';
+      selIndicator.innerHTML = msg;
+    } else {
+      selIndicator.textContent = 'Tap SECTION START TIME, TGT TOTAL TIME or RECORDED above to select it, then type a time (HHMMSS / MMSS)';
+    }
+  }
+  document.querySelectorAll('.field-block').forEach(el=>{
+    el.addEventListener('click', ()=>selectField(el.dataset.field));
+  });
+
+  // ---- advance to next field (ENT / Enter key) ----
+  function advanceField(){
+    if(selected === 'target1') selectField('actual1');
+    else if(selected === 'target2') selectField('actual2');
+    else if(selected === 'target3') selectField('actual3');
+    else if(selected === 'raceclock') commitRaceClockSet();
+    else selectField(null);
+  }
+
+  // ---- digit entry validation: keep entries to a conventional 24hr clock ----
+  // 6-digit fields are HH:MM:SS (HH 00-23, MM/SS 00-59); 4-digit fields are MM:SS (00-59 each)
+  // Section Distance (also 4 digits) is a plain XX.XX value, so any digit 0-9 is allowed
+  function isDigitAllowed(name, buf, digitChar){
+    const d = parseInt(digitChar, 10);
+    const pos = buf.length;
+    if(name === 'sectiondistance') return true;                  // XX.XX mi: any digit 0-9
+    if(digitsMap[name].length === 6){
+      if(pos === 0) return d <= 2;                              // HH tens: 0-2
+      if(pos === 1) return parseInt(buf[0],10) === 2 ? d <= 3 : true; // HH units: 0-3 if tens=2, else 0-9
+      if(pos === 2 || pos === 4) return d <= 5;                 // MM/SS tens: 0-5
+      return true;                                              // MM/SS units: 0-9
+    }
+    // 4-digit MM:SS field
+    if(pos === 0 || pos === 2) return d <= 5;                   // MM/SS tens: 0-5
+    return true;                                                // MM/SS units: 0-9
+  }
+
+  // ---- interval recompute ----
+  function timeStrToSeconds(str){
+    if(str.length !== 6) return null;
+    const h = parseInt(str.slice(0,2),10), m = parseInt(str.slice(2,4),10), s = parseInt(str.slice(4,6),10);
+    if(isNaN(h) || isNaN(m) || isNaN(s)) return null;
+    return h*3600 + m*60 + s;
+  }
+  function mmssToSeconds(str){
+    if(str.length !== 4) return null;
+    const m = parseInt(str.slice(0,2),10), s = parseInt(str.slice(2,4),10);
+    if(isNaN(m) || isNaN(s)) return null;
+    return m*60 + s;
+  }
+  // tracks, per checkpoint, the computed Tgt Race Time in seconds (or null if not yet known)
+  const tgtRaceSeconds = { 1: null, 2: null, 3: null };
+  // tracks, per checkpoint, the computed interval in seconds (or null if not yet known)
+  const cpIntervalValue = { 1: null, 2: null, 3: null };
+  // tracks whichever checkpoint the navigator is currently working on, for the Interval display
+  let activeCheckpoint = null;
+
+  // Tgt Race Time for checkpoint idx = Section Start Time + Tgt Total Time idx,
+  // adjusted by the previous checkpoint's interval (treated as 0 until that interval is known).
+  // This makes each checkpoint's Interval show the error gained/lost on THAT leg,
+  // rather than the cumulative error since the start.
+  function updateTgtRaceTime(idx){
+    const startSec = timeStrToSeconds(buffers.start);
+    const totalSec = mmssToSeconds(buffers['target'+idx]);
+    if(startSec !== null && totalSec !== null){
+      const adj = (idx > 1 && cpIntervalValue[idx-1] !== null) ? cpIntervalValue[idx-1] : 0;
+      const result = ((startSec + totalSec + adj) % 86400 + 86400) % 86400;
+      tgtRaceSeconds[idx] = result;
+    } else {
+      tgtRaceSeconds[idx] = null;
+    }
+    renderTimeDisplay('tgtrace'+idx, tgtRaceSeconds[idx]);
+  }
+  function updateIntervalValue(idx){
+    const tgtRace = tgtRaceSeconds[idx];
+    const a = timeStrToSeconds(buffers['actual'+idx]);
+    const value = (tgtRace !== null && a !== null) ? (a - tgtRace) : null;
+    cpIntervalValue[idx] = value;
+    renderIntervalValue(cpIntervalDisp[idx], value);
+    if(idx === activeCheckpoint && value !== null) setInterval_(value);
+  }
+  // recompute everything in order, so each checkpoint's adjustment uses the
+  // freshly-computed interval from the one before it
+  function recomputeAll(){
+    [1,2,3].forEach(idx=>{
+      updateTgtRaceTime(idx);
+      updateIntervalValue(idx);
+    });
+  }
+  function checkRecompute(name){
+    if(name === 'start') autoStarted = false;
+    if(name === 'target1' || name === 'actual1') activeCheckpoint = 1;
+    if(name === 'target2' || name === 'actual2') activeCheckpoint = 2;
+    if(name === 'target3' || name === 'actual3') activeCheckpoint = 3;
+    recomputeAll();
+  }
+
+  // ---- keypad ----
+  document.querySelectorAll('.keypad [data-digit]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(!selected){ flashEl(selIndicator); return; }
+      if(buffers[selected].length < digitsMap[selected].length){
+        if(!isDigitAllowed(selected, buffers[selected], btn.dataset.digit)){ flashEl(selIndicator); return; }
+        buffers[selected] += btn.dataset.digit;
+        renderBuffer(selected);
+        checkRecompute(selected);
+      }
+    });
+  });
+  document.getElementById('btn-clr').addEventListener('click', ()=>{
+    if(!selected){ flashEl(selIndicator); return; }
+    buffers[selected] = '';
+    renderBuffer(selected);
+    checkRecompute(selected);
+  });
+  document.getElementById('btn-del').addEventListener('click', ()=>{
+    if(!selected){ flashEl(selIndicator); return; }
+    buffers[selected] = buffers[selected].slice(0,-1);
+    renderBuffer(selected);
+    checkRecompute(selected);
+  });
+  document.getElementById('btn-ent').addEventListener('click', ()=>{
+    if(!selected){ flashEl(selIndicator); return; }
+    advanceField();
+  });
+
+  // keyboard support
+  window.addEventListener('keydown', (e)=>{
+    if(!selected) return;
+    if(e.key >= '0' && e.key <= '9'){
+      if(buffers[selected].length < digitsMap[selected].length){
+        if(!isDigitAllowed(selected, buffers[selected], e.key)){ flashEl(selIndicator); return; }
+        buffers[selected] += e.key;
+        renderBuffer(selected);
+        checkRecompute(selected);
+      }
+    } else if(e.key === 'Backspace'){
+      buffers[selected] = buffers[selected].slice(0,-1);
+      renderBuffer(selected);
+      checkRecompute(selected);
+    } else if(e.key === 'Escape'){
+      buffers[selected] = '';
+      renderBuffer(selected);
+      checkRecompute(selected);
+    } else if(e.key === 'Enter'){
+      advanceField();
+    }
+  });
+
+  // ---- stopwatch ----
+  let swRunning = false, swStart = 0, swAccum = 0;
+  function swElapsedMs(){ return swAccum + (swRunning ? performance.now() - swStart : 0); }
+  function renderStopwatch(){
+    if(!autoStarted){
+      setDigits(digitsMap.stopwatch, '000000');
+      return;
+    }
+    const totalSec = Math.floor(swElapsedMs()/1000);
+    const h = Math.floor(totalSec/3600) % 100, m = Math.floor(totalSec/60) % 60, s = totalSec % 60;
+    setDigits(digitsMap.stopwatch, pad2(h)+pad2(m)+pad2(s));
+  }
+
+  // ---- race clock ----
+  let rcOffset = 0; // ms adjustment, for syncing against the official race clock
+  function raceClockSecs(){
+    const now = new Date(Date.now() + rcOffset);
+    return now.getHours()*3600 + now.getMinutes()*60 + now.getSeconds();
+  }
+  function raceClockStr(){
+    const secs = raceClockSecs();
+    return pad2(Math.floor(secs/3600))+pad2(Math.floor((secs%3600)/60))+pad2(secs%60);
+  }
+  function renderRaceClock(){
+    renderTimeDisplay('raceclock', raceClockSecs());
+  }
+  // commit a manually-typed HHMMSS race clock value: recompute rcOffset so the
+  // race clock now reads the entered time, then return to live ticking
+  function commitRaceClockSet(){
+    if(buffers.raceclock.length === 6){
+      const enteredSec = timeStrToSeconds(buffers.raceclock);
+      const now = new Date();
+      const realSec = now.getHours()*3600 + now.getMinutes()*60 + now.getSeconds();
+      rcOffset = (enteredSec - realSec) * 1000;
+    }
+    buffers.raceclock = '';
+    selectField(null);
+    renderRaceClock();
+  }
+
+  // ---- "go" trigger: zeroes and starts the stopwatch ----
+  let autoStarted = false; // becomes true once the stopwatch has gone for the current Start Time
+  function triggerGo(){
+    swAccum = 0;
+    swStart = performance.now();
+    swRunning = true;
+    autoStarted = true;
+    renderStopwatch();
+  }
+  // every tick, check whether the race clock has reached the entered Start Time
+  function checkAutoStart(){
+    if(autoStarted) return;
+    if(buffers.start.length !== 6) return;
+    if(raceClockStr() === buffers.start) triggerGo();
+  }
+
+  let blink = true;
+  setInterval(()=>{
+    renderStopwatch();
+    if(selected !== 'raceclock') renderRaceClock();
+    checkAutoStart();
+    blink = !blink;
+    setColon(document.getElementById('display-stopwatch'), (swRunning && autoStarted) ? blink : true);
+    if(selected !== 'raceclock') setColon(raceClockEl, blink);
+  }, 500);
+  renderStopwatch();
+  renderRaceClock();
+
+  document.getElementById('btn-rc-minus').addEventListener('click', ()=>{
+    rcOffset -= 1000;
+    renderRaceClock();
+  });
+  document.getElementById('btn-rc-plus').addEventListener('click', ()=>{
+    rcOffset += 1000;
+    renderRaceClock();
+  });
+  document.getElementById('btn-rc-set').addEventListener('click', ()=>{
+    if(selected === 'raceclock'){
+      commitRaceClockSet();
+    } else {
+      buffers.raceclock = '';
+      renderBuffer('raceclock');
+      setColon(raceClockEl, true);
+      selectField('raceclock');
+    }
+  });
+
+  // ---- start button: manual "go" override -- also selects Start Time for entry ----
+  document.getElementById('btn-start').addEventListener('click', ()=>{
+    triggerGo();
+    selectField('start');
+  });
+
+  // ---- section distance button: clears then selects Section Distance for entry ----
+  document.getElementById('btn-section-distance').addEventListener('click', ()=>{
+    buffers.sectiondistance = '';
+    renderBuffer('sectiondistance');
+    selectField('sectiondistance');
+  });
+
+  // ---- check buttons ----
+  document.querySelectorAll('[data-checkpoint]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.dataset.checkpoint;
+      selectField('target'+idx);
+      checkRecompute('target'+idx);
+    });
+  });
+
+  // ---- distance tripmeter (GPS-based) ----
+  let totalDistanceMi = 0;
+  let lastFix = null; // { lat, lon } of the last accepted GPS fix
+  const gpsStatusEl = document.getElementById('gps-status');
+
+  function renderDistance(){
+    const mi = Math.min(9999.99, totalDistanceMi);
+    const str = mi.toFixed(2).replace('.', '').padStart(6, '0');
+    setDigits(distanceDigits, str);
+  }
+  renderDistance();
+
+  function haversineMiles(lat1, lon1, lat2, lon2){
+    const R = 3958.8; // mean Earth radius, miles
+    const toRad = x => x * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  if('geolocation' in navigator){
+    navigator.geolocation.watchPosition(
+      pos => {
+        gpsStatusEl.classList.remove('error');
+        gpsStatusEl.classList.add('active');
+        const { latitude, longitude, accuracy } = pos.coords;
+        // only trust reasonably accurate fixes, and ignore tiny jitter when stationary
+        if(accuracy !== null && accuracy <= 30){
+          if(lastFix){
+            const d = haversineMiles(lastFix.lat, lastFix.lon, latitude, longitude);
+            if(d > 0.00093) totalDistanceMi += d; // ~1.5m noise threshold
+          }
+          lastFix = { lat: latitude, lon: longitude };
+          renderDistance();
+        }
+      },
+      () => {
+        gpsStatusEl.classList.remove('active');
+        gpsStatusEl.classList.add('error');
+      },
+      { enableHighAccuracy: true, maximumAge: 1000, timeout: 15000 }
+    );
+  } else {
+    gpsStatusEl.classList.add('error');
+  }
+
+  // ---- new section ----
+  document.getElementById('btn-new-section').addEventListener('click', ()=>{
+    names.filter(n=>n!=='stopwatch').forEach(n=>{ buffers[n]=''; renderBuffer(n); });
+    buffers.sectiondistance = ''; renderBuffer('sectiondistance');
+    TOD_ENTRY_FIELDS.forEach(n=>setAmPm(n, ''));
+    activeCheckpoint = null;
+    recomputeAll();
+    setInterval_(null);
+    autoStarted = false;
+    swAccum = 0; swRunning = false;
+    totalDistanceMi = 0;
+    renderDistance();
+    renderStopwatch();
+    selectField(null);
+  });
+
+  // ---- LED colour theme ----
+  document.querySelectorAll('.led-dot').forEach(dot=>{
+    dot.addEventListener('click', ()=>{
+      document.querySelectorAll('.led-dot').forEach(d=>d.classList.remove('active'));
+      dot.classList.add('active');
+      document.documentElement.setAttribute('data-led', dot.dataset.led);
+    });
+  });
+
+  // ---- 12hr / 24hr display format toggle ----
+  // affects only how completed time-of-day values are displayed (Race Clock,
+  // Section Start Time, Recorded, Tgt Race Time); entry is always 24hr digits
+  const clockFormatBtn = document.getElementById('btn-clock-format');
+  clockFormatBtn.addEventListener('click', ()=>{
+    clockFormat24 = !clockFormat24;
+    clockFormatBtn.textContent = clockFormat24 ? '24HR' : '12HR';
+    document.documentElement.setAttribute('data-clock', clockFormat24 ? '24' : '12');
+    if(selected !== 'raceclock') renderRaceClock();
+    TOD_ENTRY_FIELDS.forEach(refreshTodField);
+    [1,2,3].forEach(i=>renderTimeDisplay('tgtrace'+i, tgtRaceSeconds[i]));
+  });
+})();
+</script>
+</body>
+</html>
